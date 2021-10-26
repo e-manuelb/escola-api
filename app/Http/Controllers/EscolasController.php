@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\DB;
 class EscolasController extends Controller
 {
 
+
+    public function getByID($id)
+    {
+        $escolas = Escolas::findOrFail($id);
+        return new EscolasResource($escolas);
+    }
+
+    public function delete($id)
+    {
+        $escolas = Escolas::findOrFail($id);
+        if ($escolas->delete()) {
+            return new EscolasResource($escolas);
+        }
+    }
+
+    public function search($nomeEscola)
+    {
+
+        $escolas = Escolas::where('nomeEscola', 'like', '%' . $nomeEscola . '%')->get();
+
+        return EscolasResource::collection($escolas);
+    }
+
+
     public function save(EscolasRequest $request)
     {
 
@@ -49,28 +73,6 @@ class EscolasController extends Controller
     public function getAll()
     {
         $escolas = Escolas::paginate(15);
-        return EscolasResource::collection($escolas);
-    }
-
-    public function getByID($id)
-    {
-        $escolas = Escolas::findOrFail($id);
-        return new EscolasResource($escolas);
-    }
-
-    public function delete($id)
-    {
-        $escolas = Escolas::findOrFail($id);
-        if ($escolas->delete()) {
-            return new EscolasResource($escolas);
-        }
-    }
-
-    public function search($nomeEscola)
-    {
-
-        $escolas = Escolas::where('nomeEscola', 'like', '%' . $nomeEscola . '%')->get();
-
         return EscolasResource::collection($escolas);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlunosDeTurmasRequest;
 use App\Models\AlunosDeTurmas;
 use App\Http\Resources\AlunosDeTurmas as AlunosDeTurmasResource;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 class AlunosDeTurmasController extends Controller
 {
 
-    public function save(Request $request)
+    public function save(AlunosDeTurmasRequest $request)
     {
         $alunosDeTurmas = new AlunosDeTurmas;
         $alunosDeTurmas->id_aluno = $request->input('id_aluno');
@@ -26,7 +27,7 @@ class AlunosDeTurmasController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function update(AlunosDeTurmasRequest $request)
     {
         $alunosDeTurmas = AlunosDeTurmas::findOrFail($request->id);
         $alunosDeTurmas->id_aluno = $request->input('id_aluno');
