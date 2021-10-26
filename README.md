@@ -7,7 +7,9 @@ Requisitos:
 3. IDE (VS Code, PHP Storm, etc).
 
 -> Para começar a usar a API, faça o clone do repositório em uma pasta qualquer do seu computador.
+
 -> Após isso, abra a devida pasta com o terminal de comando ou o VSCode.
+
 -> Então, crie um banco de dados em seu MySQL chamado escola_api.
 
 O arquivo .env já está configurado com minhas credenciais, que são:
